@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/gmaenetw/public_html/dashboard
+    - export DEPLOYPATH=/home/gmaenetw/public_html/dashboard/
     - /bin/cp -R * $DEPLOYPATH
