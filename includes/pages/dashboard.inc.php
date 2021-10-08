@@ -292,7 +292,8 @@
                                 <?php echo $step1; ?>
                             </div>
                             <div class="col-5 p10" style="border-bottom: #f0f0f0 thin solid"> 
-                                <?php if($step1 < 3){ echo "N0.00"; } else { "N".number_format((($currentPlan['amount'] * $currentPlan['stage1_roi'])/100), 2); } ?>
+                                <!-- <?php if($step1 < 3){ echo "N0.00"; } else { "N".number_format((($currentPlan['amount'] * $currentPlan['stage1_roi'])/100), 2); } ?> -->
+                                <?php if($step1 < 3){ echo "N0.00"; } else { "N".number_format($currentPlan['amount'], 2); } ?>
                             </div>
                         </div>
                         <div class="row m0">
