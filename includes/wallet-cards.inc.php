@@ -36,10 +36,10 @@
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="wallet-card-referral">
+            <!-- <div class="wallet-card-referral">
                 <span class="white-color"> LEVEL BONUS </span> <br>
                 <span class="balance-text"> N<?php echo number_format($bonusBalance,2) ?> </span>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
