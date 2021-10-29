@@ -34,7 +34,6 @@
                         <button class="btn btn-primary" onclick="payment.wallet(<?php echo $currentPlan['amount']; ?>)"> Pay From Wallet &nbsp;<i class="fas fa-arrow-right"></i> </button>
                     <?php } ?>
                     <button class="btn btn-primary" onclick="payment.card('<?php echo $userId; ?>', '<?php echo $currentPlan['amount']; ?>', '<?php echo $userData['email']; ?>', '<?php echo $userData['first_name']; ?>')"> Pay With Cash/Card &nbsp;<i class="fas fa-arrow-right"></i> </button>
-                    <button class="btn btn-primary" onclick="investment.confirm('<?php echo $userId; ?>')"> Activate Free &nbsp;<i class="fas fa-arrow-right"></i> </button>
                 </p>
             </div>
             <?php } else { 
