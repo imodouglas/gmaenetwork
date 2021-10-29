@@ -23,18 +23,26 @@
 
     if(isset($_POST['addAccount'])){ 
         if($_POST['password'] == $_POST['confirm_password']){
-            $refData = $user->getUser($_POST['ref']);
-            if($refData == false){ $level = 0; } else { $level = $refData['level']; }
-            $data = $user->doCreateUser($_POST['password'], $_POST['fname'], $_POST['lname'], $_POST['uname'], $_POST['email'], $_POST['phone'], $level, $_POST['ref']);
-            if($data !== false){
-                $userID = $user->userByEmail($_POST['email'])['id'];
-                $_SESSION['user_session'] = $userID;
-                $inv = $investment->doAddInvestment($userID, $level);
-                $msg = "Hello ".$_POST['fname'].", \r\n\r\nIt is our pleasure to inform you that your account with ".$companyName." has been created successfully. \r\n\r\nYou can login to your account to start making investments. \r\n\r\nFeel free to contact us via any of our contact channels if your need clarification on any of the above information. \r\n\r\nBest regards,\r\n\r\n".$companyName;
-                $mail = $mailer->sendMail($companyEmail, $_POST['email'], 'Welcome to '.$companyName, $msg, $companyName);
-                echo "<script> window.location = '".$rootURL."home'; </script>";
+            if($user->getUser($_POST['email']) !== false){
+                if($user->getUser($_POST['uname']) !== false){
+                    $refData = $user->getUser($_POST['ref']);
+                    if($refData == false){ $level = 0; } else { $level = $refData['level']; }
+                    $data = $user->doCreateUser($_POST['password'], $_POST['fname'], $_POST['lname'], $_POST['uname'], $_POST['email'], $_POST['phone'], $level, $_POST['ref']);
+                    if($data !== false){
+                        $userID = $user->userByEmail($_POST['email'])['id'];
+                        $_SESSION['user_session'] = $userID;
+                        $inv = $investment->doAddInvestment($userID, $level);
+                        $msg = "Hello ".$_POST['fname'].", \r\n\r\nIt is our pleasure to inform you that your account with ".$companyName." has been created successfully. \r\n\r\nYou can login to your account to start making investments. \r\n\r\nFeel free to contact us via any of our contact channels if your need clarification on any of the above information. \r\n\r\nBest regards,\r\n\r\n".$companyName;
+                        $mail = $mailer->sendMail($companyEmail, $_POST['email'], 'Welcome to '.$companyName, $msg, $companyName);
+                        echo "<script> window.location = '".$rootURL."home'; </script>";
+                    } else {
+                        return $data;   
+                    }
+                } else {
+                    echo "<script> alert('An account with the username ".$_POST['uname']." already exist!'); </script>";
+                }
             } else {
-                return $data;   
+                echo "<script> alert('An account with the email ".$_POST['email']." already exist!'); </script>";
             }
         } else {
             echo "<script> alert('An error occured. Please try again'); </script>";

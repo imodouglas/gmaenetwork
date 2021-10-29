@@ -60,7 +60,7 @@
                                 if($currentTeam['link1'] !== NULL){
                                     $step1 = $step1 + 1;
                                     $link1 = $user->getUser($currentTeam['link1']);
-                                    echo "<i class='fa fa-street-view user-icon-active'></i> <br> ".$link1['uname'];
+                                    echo "<i class='fa fa-street-view user-icon-active' id='".$link1['uname']."' onclick='getRefLink(this.id)'></i> <br> ".$link1['uname'];
                                 } else {
                                     echo "<i class='fa fa-street-view user-icon-inactive'></i> <br> Not set";
                                 }
@@ -83,7 +83,7 @@
                                                 if($l1Team['link1'] !== NULL){
                                                     $step2 = $step2 + 1;
                                                     $link1 = $user->getUser($l1Team['link1']);
-                                                    echo "<i class='fa fa-street-view user-icon-active'></i> <br> ".$link1['uname'];
+                                                    echo "<i class='fa fa-street-view user-icon-active' id='".$link1['uname']."' onclick='getRefLink(this.id)'></i> <br> ".$link1['uname'];
                                                 } else {
                                                     echo "<i class='fa fa-street-view user-icon-inactive'></i> <br> Not set";
                                                 }
@@ -98,7 +98,7 @@
                                                 if($l1Team['link2'] !== NULL){
                                                     $step2 = $step2 + 1;
                                                     $link2 = $user->getUser($l1Team['link2']);
-                                                    echo "<i class='fa fa-street-view user-icon-active'></i> <br> ".$link2['uname'];
+                                                    echo "<i class='fa fa-street-view user-icon-active' id='".$link2['uname']."' onclick='getRefLink(this.id)'></i> <br> ".$link2['uname'];
                                                 } else {
                                                     echo "<i class='fa fa-street-view user-icon-inactive'></i> <br> Not set";
                                                 }
@@ -113,7 +113,7 @@
                                                 if($l1Team['link3'] !== NULL){
                                                     $step2 = $step2 + 1;
                                                     $link3 = $user->getUser($l1Team['link3']);
-                                                    echo "<i class='fa fa-street-view user-icon-active'></i> <br> ".$link3['uname'];
+                                                    echo "<i class='fa fa-street-view user-icon-active' id='".$link3['uname']."' onclick='getRefLink(this.id)'></i> <br> ".$link3['uname'];
                                                 } else {
                                                     echo "<i class='fa fa-street-view user-icon-inactive'></i> <br> Not set";
                                                 }
@@ -132,7 +132,7 @@
                                 if($currentTeam['link2'] !== NULL){
                                     $step1 = $step1 + 1;
                                     $link2 = $user->getUser($currentTeam['link2']);
-                                    echo "<i class='fa fa-street-view user-icon-active'></i> <br> ".$link2['uname'];
+                                    echo "<i class='fa fa-street-view user-icon-active' id='".$link2['uname']."' onclick='getRefLink(this.id)'></i> <br> ".$link2['uname'];
                                 } else {
                                     echo "<i class='fa fa-street-view user-icon-inactive'></i> <br> Not set";
                                 }
@@ -155,7 +155,7 @@
                                                 if($l2Team['link1'] !== NULL){
                                                     $step2 = $step2 + 1;
                                                     $link1 = $user->getUser($l2Team['link1']);
-                                                    echo "<i class='fa fa-street-view user-icon-active'></i> <br> ".$link1['uname'];
+                                                    echo "<i class='fa fa-street-view user-icon-active' id='".$link1['uname']."' onclick='getRefLink(this.id)'></i> <br> ".$link1['uname'];
                                                 } else {
                                                     echo "<i class='fa fa-street-view user-icon-inactive'></i> <br> Not set";
                                                 }
@@ -170,7 +170,7 @@
                                                 if($l2Team['link2'] !== NULL){
                                                     $step2 = $step2 + 1;
                                                     $link2 = $user->getUser($l2Team['link2']);
-                                                    echo "<i class='fa fa-street-view user-icon-active'></i> <br> ".$link2['uname'];
+                                                    echo "<i class='fa fa-street-view user-icon-active' id='".$link2['uname']."' onclick='getRefLink(this.id)'></i> <br> ".$link2['uname'];
                                                 } else {
                                                     echo "<i class='fa fa-street-view user-icon-inactive'></i> <br> Not set";
                                                 }
@@ -185,7 +185,7 @@
                                                 if($l2Team['link3'] !== NULL){
                                                     $step2 = $step2 + 1;
                                                     $link3 = $user->getUser($l2Team['link3']);
-                                                    echo "<i class='fa fa-street-view user-icon-active'></i> <br> ".$link3['uname'];
+                                                    echo "<i class='fa fa-street-view user-icon-active' id='".$link3['uname']."' onclick='getRefLink(this.id)'></i> <br> ".$link3['uname'];
                                                 } else {
                                                     echo "<i class='fa fa-street-view user-icon-inactive'></i> <br> Not set";
                                                 }
@@ -204,7 +204,7 @@
                                 if($currentTeam['link3'] !== NULL){
                                     $step1 = $step1 + 1;
                                     $link3 = $user->getUser($currentTeam['link3']);
-                                    echo "<i class='fa fa-street-view user-icon-active'></i> <br> ".$link3['uname'];
+                                    echo "<i class='fa fa-street-view user-icon-active' id='".$link3['uname']."' onclick='getRefLink(this.id)'></i> <br> ".$link3['uname'];
                                 } else {
                                     echo "<i class='fa fa-street-view user-icon-inactive'></i> <br> Not set";
                                 }
@@ -227,7 +227,7 @@
                                                 if($l3Team['link1'] !== NULL){
                                                     $step2 = $step2 + 1;
                                                     $link1 = $user->getUser($l3Team['link1']);
-                                                    echo "<i class='fa fa-street-view user-icon-active'></i> <br> ".$link1['uname'];
+                                                    echo "<i class='fa fa-street-view user-icon-active' id='".$link1['uname']."' onclick='getRefLink(this.id)'></i> <br> ".$link1['uname'];
                                                 } else {
                                                     echo "<i class='fa fa-street-view user-icon-inactive'></i> <br> Not set";
                                                 }
@@ -242,7 +242,7 @@
                                                 if($l3Team['link2'] !== NULL){
                                                     $step2 = $step2 + 1;
                                                     $link2 = $user->getUser($l3Team['link2']);
-                                                    echo "<i class='fa fa-street-view user-icon-active'></i> <br> ".$link2['uname'];
+                                                    echo "<i class='fa fa-street-view user-icon-active' id='".$link2['uname']."' onclick='getRefLink(this.id)'></i> <br> ".$link2['uname'];
                                                 } else {
                                                     echo "<i class='fa fa-street-view user-icon-inactive'></i> <br> Not set";
                                                 }
@@ -257,7 +257,7 @@
                                                 if($l3Team['link3'] !== NULL){
                                                     $step2 = $step2 + 1;
                                                     $link3 = $user->getUser($l3Team['link3']);
-                                                    echo "<i class='fa fa-street-view user-icon-active'></i> <br> ".$link3['uname'];
+                                                    echo "<i class='fa fa-street-view user-icon-active' id='".$link3['uname']."' onclick='getRefLink(this.id)'></i> <br> ".$link3['uname'];
                                                 } else {
                                                     echo "<i class='fa fa-street-view user-icon-inactive'></i> <br> Not set";
                                                 }
@@ -355,6 +355,18 @@
     </div>
 </div>
 
+<div id="ref-link" style="display:none">
+    <div style="position:fixed; top:0; left:0; width:100%; height:100vh; z-index:10000; background:#000; opacity:0.8"></div>
+    <div style="position:fixed; top:20vh; left:0; width:100%; z-index:10010;" align="center">
+        <div style="width:90%; max-width:500px; overflow-y:scroll; padding:20px; background:#fcfcfc; border:#ccc thin solid; border-radius:3px; box-shadow:#000 0px 0px 8px" align="left">
+            <button style="padding:3px 10px; background:#ccc; float:right; margin-top:-10px; margin-right:-10px" onclick="closeRefLink()" > <i class="fa fa-times"></i></button>
+            <div style="padding:30px;" align="left">
+                <div id="user-link"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 <script src="includes/scripts/payments.js"></script>
 <script>
@@ -372,5 +384,15 @@
             }
         });
         // console.log("data");
+    }
+
+    const getRefLink = (uname) => {
+        let refLink = "https://gmaenetwork.com/?ref="+uname;
+        $("#user-link").html("<a href='"+refLink+"'> "+refLink+" </a>");
+        $("#ref-link").slideDown("fast");
+    }
+
+    const closeRefLink = () => {
+        $("#ref-link").slideUp("fast");
     }
 </script>
