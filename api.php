@@ -122,12 +122,44 @@
         $inv = $investment->getInvestment($_POST['investment']);
         if($inv !== false){
             $plan = $plan->getPlan($inv['plan_id']);
-            if($_POST['cmd'] == "confirm"){ $status = "active"; } else if($_POST['cmd'] == "pending") { $status = "pending"; }
-            $invUp = $investment->doUpdateInvestmentStatus($inv['id'], $status, time());
-            if($invUp !== false){
-                echo json_encode(true);
-            } else {
-                echo json_encode(false);
+            if($_POST['cmd'] == "confirm"){ 
+                $userData = $user->getUser($userSession);
+                $referrer = $user->getUser($userData['referrer']);
+                $refInvestment = $investment->getCurrentInvestment($referrer['id']);
+                if($refInvestment !== false){
+                    $refTeam = $user->getTeam($refInvestment['id']);
+                    if($refTeam['link1'] == NULL){
+                        $rData = $user->doUpdateTeam($refTeam['id'], 'link1', $userData['id']);
+                    } else if($refTeam['link2'] == NULL){
+                        $rData = $user->doUpdateTeam($refTeam['id'], 'link2', $userData['id']);
+                    } else if($refTeam['link3'] == NULL){
+                        $rData = $user->doUpdateTeam($refTeam['id'], 'link3', $userData['id']);
+                    }
+                    $team = $user->doCreateTeam($userSession, $inv['id']);
+                    if($team == true){
+                        $status = "active"; 
+                        $invUp = $investment->doUpdateInvestmentStatus($inv['id'], $status);
+                        if($invUp !== false){
+                            echo json_encode(true);
+                        } else {
+                            echo json_encode(false);
+                        }
+                    }
+                } else {
+                    $status = "active"; 
+                    $team = $user->doCreateTeam($userSession, $inv['id']);
+                    if($team == true){
+                        $status = "active"; 
+                        $invUp = $investment->doUpdateInvestmentStatus($inv['id'], $status);
+                        if($invUp !== false){
+                            echo json_encode(true);
+                        } else {
+                            echo json_encode(false);
+                        }
+                    }
+                }
+            } else if($_POST['cmd'] == "pending") { 
+                $status = "pending"; 
             }
         } else {
             echo json_encode(false);
