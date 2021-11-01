@@ -23,7 +23,7 @@
 
     if(isset($_POST['addAccount'])){ 
         if($_POST['password'] == $_POST['confirm_password']){
-            if($user->getUser($_POST['email']) !== false){
+            if($user->userByEmail($_POST['email']) !== false){
                 if($user->getUser($_POST['uname']) !== false){
                     $refData = $user->getUser($_POST['ref']);
                     if($refData == false){ $level = 0; } else { $level = $refData['level']; }
