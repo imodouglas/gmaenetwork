@@ -55,8 +55,8 @@ class User extends Config {
 
     /** Get A User Data by Id Model */
     protected function userById($id){
-        $query = $this->conn()->prepare("SELECT * FROM users WHERE id = ? OR uname = ? OR email = ?");
-        $query->execute([$id, $id, $id]);
+        $query = $this->conn()->prepare("SELECT * FROM users WHERE id = ? OR uname = ?");
+        $query->execute([$id, $id]);
         $data = $this->singleResult($query);
         return $data;
     }
