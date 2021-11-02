@@ -123,7 +123,7 @@
         if($inv !== false){
             $plan = $plan->getPlan($inv['plan_id']);
             if($_POST['cmd'] == "confirm"){ 
-                $userData = $user->getUser($userSession);
+                $userData = $user->getUser($inv['user_id']);
                 $referrer = $user->getUser($userData['referrer']);
                 $refInvestment = $investment->getCurrentInvestment($referrer['id']);
                 if($refInvestment !== false){
@@ -135,7 +135,7 @@
                     } else if($refTeam['link3'] == NULL){
                         $rData = $user->doUpdateTeam($refTeam['id'], 'link3', $userData['id']);
                     }
-                    $team = $user->doCreateTeam($userSession, $inv['id']);
+                    $team = $user->doCreateTeam($inv['user_id'], $inv['id']);
                     if($team == true){
                         $status = "active"; 
                         $invUp = $investment->doUpdateInvestmentStatus($inv['id'], $status);
@@ -147,7 +147,7 @@
                     }
                 } else {
                     $status = "active"; 
-                    $team = $user->doCreateTeam($userSession, $inv['id']);
+                    $team = $user->doCreateTeam($inv['user_id'], $inv['id']);
                     if($team == true){
                         $status = "active"; 
                         $invUp = $investment->doUpdateInvestmentStatus($inv['id'], $status);
