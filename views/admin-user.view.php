@@ -377,7 +377,7 @@
                                     </div>
                                     <?php if($step1 == 3 && $step2 == 9){ ?>
                                         <div class="p10" align="center" style="margin-top:30px">
-                                            <button class="btn btn-primary"> <i class="fas fa-arrow-up"></i>&nbsp; Upgrade to Level <?php echo $inv_user_id['level'] + 1; ?> </button>
+                                            <button class="btn btn-primary"> <i class="fas fa-arrow-up"></i>&nbsp; Upgrade to Level <?php echo $inv_user['level'] + 1; ?> </button>
                                             <button class="btn btn-danger"> End & Take Profit &nbsp;<i class="fas fa-sign-out-alt"></i> </button>
                                         </div>
                                     <?php } ?>
