@@ -136,8 +136,17 @@ class User extends Config {
 
     /** GET Team */
     protected function readTeam($id){
-        $query = $this->conn()->prepare("SELECT * FROM teams WHERE id = ? OR investment_id = ?");
-        $query->execute([$id, $id]);
+        $query = $this->conn()->prepare("SELECT * FROM teams WHERE investment_id = ?");
+        $query->execute([$id]);
+        $result = $this->singleResult($query);
+        return $result;
+    }
+
+
+    /** GET Team By Id */
+    protected function teamById($id){
+        $query = $this->conn()->prepare("SELECT * FROM teams WHERE id = ?");
+        $query->execute([$id]);
         $result = $this->singleResult($query);
         return $result;
     }
