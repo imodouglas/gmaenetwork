@@ -109,7 +109,7 @@
                                         <input type="password" name="confirm_password" class="form-control" required="" placeholder="Confirm Password" />
                                     </p>
                                     <p>
-                                        <input type="text" name="ref" value="<?php if(isset($_SESSION['ref'])){ echo $_SESSION['ref']; } ?>" class="form-control" required="" placeholder="Referrer's Username" />
+                                        <input type="text" name="ref" value="<?php if(isset($_SESSION['ref'])){ echo $_SESSION['ref']; } ?>" class="form-control" required="" placeholder="Referrer's Username" readonly />
                                     </p>
                                     <p>
                                         <input type="submit" name="addAccount" value="Create Account" class="btn btn-success form-control" />
