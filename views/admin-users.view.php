@@ -69,9 +69,9 @@
                                             <?php echo date("d M, Y - h:ia", $user['created_at']); ?>   
                                         </td>
                                         <td style="padding:10px; border-bottom:#ccc thin solid">
-                                            <a href="user/<?php echo $user['id']; ?>" class="btn btn-primary white-color" style="padding: 3px 5px; background:blue" onclick="showUser('<?php echo $user['id']; ?>')" title="Full Details"> <i class="fas fa-eye"></i> </a>
-                                            <a href="payouts/<?php echo $user['id']; ?>" class="btn btn-primary white-color" style="padding: 3px 5px; background:green" title="User's Cashouts"> <i class="fas fa-money-bill"></i> </a>
-                                            <a href="investments/<?php echo $user['id']; ?>" class="btn btn-primary white-color" style="padding: 3px 5px; background:#333"  title="User's Investments"> <i class="fas fa-chart-line"></i> </a>
+                                            <a href="user/<?php echo $user['id']; ?>" class="btn btn-primary white-color" style="font-size:12px; padding: 3px; background:blue" onclick="showUser('<?php echo $user['id']; ?>')" title="Full Details"> <i class="fas fa-eye"></i> </a>
+                                            <a href="payouts/<?php echo $user['id']; ?>" class="btn btn-primary white-color" style="font-size:12px; padding: 3px; background:green" title="User's Cashouts"> <i class="fas fa-money-bill"></i> </a>
+                                            <a href="investments/<?php echo $user['id']; ?>" class="btn btn-primary white-color" style="font-size:12px; padding: 3px; background:#333"  title="User's Investments"> <i class="fas fa-chart-line"></i> </a>
                                         </td>
                                     </tr>
                                 <?php } ?>
