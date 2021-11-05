@@ -26,6 +26,9 @@
                         <div style="padding-top:10px">
                             <table style="width:100%; font-size:13px">
                                 <tr>
+                                <th style="padding:10px; background:#f0f0f0; border-bottom:#ccc thin solid">
+                                        ID
+                                    </th>
                                     <th style="padding:10px; background:#f0f0f0; border-bottom:#ccc thin solid">
                                         Name
                                     </th>
@@ -50,6 +53,9 @@
                                 </tr>
                                 <?php foreach($user->getAllUsers() AS $user){ ?>
                                     <tr>
+                                        <td style="padding:10px; border-bottom:#ccc thin solid">
+                                            <?php echo $user['id']; ?>
+                                        </td>
                                         <td style="padding:10px;border-bottom:#ccc thin solid">
                                             <?php echo $user['first_name']." ".$user['last_name']; ?>
                                         </td>
