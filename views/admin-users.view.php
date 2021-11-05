@@ -30,10 +30,16 @@
                                         Name
                                     </th>
                                     <th style="padding:10px; background:#f0f0f0; border-bottom:#ccc thin solid">
+                                        Username
+                                    </th>
+                                    <th style="padding:10px; background:#f0f0f0; border-bottom:#ccc thin solid">
                                         Email
                                     </th>
                                     <th style="padding:10px; background:#f0f0f0; border-bottom:#ccc thin solid">
                                         Phone
+                                    </th>
+                                    <th style="padding:10px; background:#f0f0f0; border-bottom:#ccc thin solid">
+                                        Referrer
                                     </th>
                                     <th style="padding:10px; background:#f0f0f0; border-bottom:#ccc thin solid">
                                         Registration Date
@@ -48,10 +54,16 @@
                                             <?php echo $user['first_name']." ".$user['last_name']; ?>
                                         </td>
                                         <td style="padding:10px; border-bottom:#ccc thin solid">
+                                            <?php echo $user['uname']; ?>
+                                        </td>
+                                        <td style="padding:10px; border-bottom:#ccc thin solid">
                                             <?php echo $user['email']; ?>
                                         </td>
                                         <td style="padding:10px; border-bottom:#ccc thin solid">
                                             <?php echo $user['phone']; ?>
+                                        </td>
+                                        <td style="padding:10px; border-bottom:#ccc thin solid">
+                                            <?php echo $user['referrer']; ?>
                                         </td>
                                         <td style="padding:10px; border-bottom:#ccc thin solid">
                                             <?php echo date("d M, Y - h:ia", $user['created_at']); ?>   
