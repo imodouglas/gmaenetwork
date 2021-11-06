@@ -305,6 +305,12 @@
                                 <?php echo 9 - $step2; ?>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-4" style="background:#333; color:#fff"> Stage Reward </div>
+                            <div class="col-8">
+                                <?php echo "N".number_format($currentPlan['cash_price'])." cash and ".$currentPlan['item_price']; ?>
+                            </div>
+                        </div>
                         <?php if($step1 == 3 && $step2 == 9){ ?>
                             <div class="p10" align="center" style="margin-top:30px">
                                 <button class="btn btn-primary" onclick="upgradeLevel('<?php echo $userData['id']; ?>, <?php echo $userData['level']; ?>')"> <i class="fas fa-arrow-up"></i>&nbsp; Upgrade to Level <?php echo $userData['level'] + 1; ?> </button>
