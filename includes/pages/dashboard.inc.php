@@ -277,10 +277,10 @@
                                 <b> Step </b>
                             </div>
                             <div class="col-4 p10" style="background: #f0f0f0; border-bottom: #fff thin solid"> 
-                                <b> Current Downlines </b>
+                                <b> Downlines </b>
                             </div>
                             <div class="col-5 p10" style="background: #f0f0f0; border-bottom: #fff thin solid"> 
-                                <b> Pending Downlines </b>
+                                <b> Remaining </b>
                             </div>
                         </div>
                         <div class="row m0">

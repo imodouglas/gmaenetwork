@@ -350,7 +350,7 @@
                                             <b> Downlines </b>
                                         </div>
                                         <div class="col-5 p10" style="background: #f0f0f0; border-bottom: #fff thin solid"> 
-                                            <b> Bonus </b>
+                                            <b> Remaining </b>
                                         </div>
                                     </div>
                                     <div class="row m0">
