@@ -12,6 +12,10 @@ class InvestmentController extends InvestmentModel{
         return $this->currentInvestment($userId);
     }
 
+    public function doCompleteInvestment($id){
+        return $this->completeInvestement($id);
+    }
+
     /** Get User Investments */
     public function getLatestInvestments($userId, $feedback){
         return $this->latestInvestments($userId, $feedback);

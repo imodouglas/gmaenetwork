@@ -72,6 +72,18 @@ class InvestmentModel extends Config {
         }
     }
 
+
+    /** Complete Status */
+    protected function completeInvestement($id){
+        $query = $this->conn()->prepare("UPDATE investments SET is_current = ?, status = ? WHERE id = ?");
+        $query->execute(["no", "complete", $id]);
+        if($query){
+            return true;
+        } else { 
+            return false;
+        }
+    }
+
     /** Add Investment */
     protected function addInvestment($userId, $planId){
         $query = $this->conn()->prepare("INSERT INTO investments (user_id, plan_id, created_at, status) VALUES (?,?,?,?)");

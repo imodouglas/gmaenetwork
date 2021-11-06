@@ -47,6 +47,31 @@ class UserController extends User {
         return $this->updateLevel($id, $level);
     }
 
+    /** get Current and Next Level */
+    public function getCurrentNextPlan($userId){
+        return $this->currentNextPlan($userId);
+    }
+
+    /** get check upline */
+    public function getCheckUpline($referrer, $level){
+        if($this->getUser($referrer) == false){
+            $refId = 3;
+        } else {
+            $refId = $this->getUser($referrer)['id'];
+        }
+        return $this->checkUpline($refId, $level);
+    }
+
+    /** get check downline */
+    public function getCheckDownline($id, $level){
+        return $this->checkDownline($id, $level);
+    }
+
+    /** get user downlines */
+    public function getDownlines($uname){
+        return $this->userDownlines($uname);
+    }
+
     /** Change Password */
     public function getChangePassword($id, $password){
         return $this->changePassword($id, md5($password));

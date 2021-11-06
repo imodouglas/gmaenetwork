@@ -313,7 +313,7 @@
                         </div>
                         <?php if($step1 == 3 && $step2 == 9){ ?>
                             <div class="p10" align="center" style="margin-top:30px">
-                                <button class="btn btn-primary" onclick="upgradeLevel('<?php echo $userData['id']; ?>, <?php echo $userData['level']; ?>')"> <i class="fas fa-arrow-up"></i>&nbsp; Upgrade to Level <?php echo $userData['level'] + 1; ?> </button>
+                                <button class="btn btn-primary" onclick="upgradeLevel('<?php echo $userData['id']; ?>', '<?php echo $userData['level']; ?>')"> <i class="fas fa-arrow-up"></i>&nbsp; Upgrade to Level <?php echo $userData['level'] + 1; ?> </button>
                                 <button class="btn btn-danger" onclick="cashoutProfit()"> End & Take Profit &nbsp;<i class="fas fa-sign-out-alt"></i> </button>
                             </div>
                         <?php } ?>
@@ -387,6 +387,16 @@
             } else {
                 alert("There was an error! Please try again.")
             }
+        });
+        // console.log("data");
+    }
+
+    const upgradeLevel = (userId, planId) => {
+        let formData = "cmd=upgrade-next-level&user="+userId+"&level="+planId
+        $.post("api.php", formData, (data)=>{
+           if(data == true){
+               location.reload()
+           }
         });
         // console.log("data");
     }

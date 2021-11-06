@@ -175,4 +175,38 @@ class User extends Config {
         }
     }
 
+    /** Current and next plan info */
+    protected function currentNextPlan($userId){
+        $query = $this->conn()->prepare("SELECT i.id, i.user_id, i.plan_id, i.is_current, i.status, p.id as current_plan_id, p.cash_price, @npId:=(SELECT id FROM plans WHERE id = i.plan_id + 1) AS next_plan_id, @npAmount:=(SELECT amount FROM plans WHERE id = i.plan_id + 1) AS next_plan_amount FROM investments i JOIN plans p ON i.plan_id = p.id WHERE i.user_id = ? AND i.is_current = 'yes' AND i.status = 'active'");
+        $query->execute([$userId]);
+        $result = $this->singleResult($query);
+        return $result;
+    }
+
+    /** Check if upline is in next stage and has free space */
+    protected function checkUpline($referrer, $level){
+        // $query = $this->conn()->prepare("SELECT i.id FROM investments i INNER JOIN teams t ON i.id = t.investment_id WHERE i.user_id IN (SELECT id FROM users WHERE uname = ?) AND i.plan_id = ? AND i.is_current = ? AND t.leader = i.user_id AND (link1 IS NULL OR link2 IS NULL OR link3 IS NULL)");
+        $query = $this->conn()->prepare("SELECT * FROM investments WHERE user_id = ? AND plan_id = ? AND status = ?");
+        $query->execute([$referrer, $level, "active"]);
+        $result = $this->singleResult($query);
+        return $result;
+    }
+
+    /** Check if downline is in next stage*/
+    protected function checkDownline($id, $level){
+        $query = $this->conn()->prepare("SELECT * FROM investments WHERE user_id = ? AND plan_id = ? AND status = ?");
+        $query->execute([$id, $level, "active"]);
+        if($query){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function userDownlines($uname){
+        $query = $this->conn()->prepare("SELECT * FROM users WHERE referrer = ?");
+        $query->execute([$uname]);
+        $data = $this->allResults($query);
+        return $data;
+    }
 }

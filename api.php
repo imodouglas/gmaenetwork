@@ -37,6 +37,54 @@
         }
         echo json_encode($result);
     }
+
+    if(isset($_POST['cmd'], $_POST['user'], $_POST['level']) && $_POST['cmd'] == "upgrade-next-level"){
+        $userInfo = $user->getUser($_POST['user']);
+        $levelInfo = $user->getCurrentNextPlan($_POST['user']);
+        if($levelInfo !== false && $levelInfo['plan_id'] == $_POST['level']){
+            if($investment->doCompleteInvestment($levelInfo['id']) !== false){
+                $profit = $levelInfo['cash_price'] - $levelInfo['next_plan_amount'];
+                if($payout->doAddPayout($_POST['user'], "wallet", $profit, "complete") !== false){
+                    if($investment->doAddInvestment($_POST['user'], $levelInfo['next_plan_id']) !== false){
+                        $inv = $investment->getCurrentInvestment($_POST['user']);
+                        $investment->doUpdateInvestmentStatus($inv['id'], "active");
+                        $user->doCreateTeam($_POST['user'], $inv['id']);
+                        $user->doUpdateLevel($_POST['user'], $levelInfo['next_plan_id']);
+                        
+                        if($user->getCheckUpline($userInfo['referrer'], $levelInfo['next_plan_id']) !== false){
+                            $refInvestment = $investment->getCurrentInvestment($user->getUser($userInfo['referrer'])['id']);
+                            $refTeam = $user->getTeam($refInvestment['id']);
+                            if($refTeam['link1'] == NULL){
+                                $rData = $user->doUpdateTeam($refTeam['id'], 'link1', $userInfo['id']);
+                            } else if($refTeam['link2'] == NULL){
+                                $rData = $user->doUpdateTeam($refTeam['id'], 'link2', $userInfo['id']);
+                            } else if($refTeam['link3'] == NULL){
+                                $rData = $user->doUpdateTeam($refTeam['id'], 'link3', $userInfo['id']);
+                            }
+                        }
+                        $downlines = $user->getDownlines($userInfo['uname']);
+                        if($downlines !== false){
+                            foreach($downlines AS $downline){
+                                if($user->getCheckDownline($downline['id'], $levelInfo['next_plan_id']) !== false){
+                                    $refTeam = $user->getTeam($userInfo['id']);
+                                    if($refTeam['link1'] == NULL){
+                                        $rData = $user->doUpdateTeam($refTeam['id'], 'link1', $userInfo['id']);
+                                    } else if($refTeam['link2'] == NULL){
+                                        $rData = $user->doUpdateTeam($refTeam['id'], 'link2', $userInfo['id']);
+                                    } else if($refTeam['link3'] == NULL){
+                                        $rData = $user->doUpdateTeam($refTeam['id'], 'link3', $userInfo['id']);
+                                    }
+                                }
+                            }
+                        }
+                        echo json_encode(true);
+                    }
+                }
+            }
+        } else {
+            echo json_encode(false);
+        }
+    }
     
 
     if(isset($_POST['userid'], $_POST['plan'], $_POST['cmd']) && $_POST['cmd'] == "make-investment"){
