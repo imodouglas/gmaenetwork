@@ -277,10 +277,10 @@
                                 <b> Step </b>
                             </div>
                             <div class="col-4 p10" style="background: #f0f0f0; border-bottom: #fff thin solid"> 
-                                <b> Downlines </b>
+                                <b> Current Downlines </b>
                             </div>
                             <div class="col-5 p10" style="background: #f0f0f0; border-bottom: #fff thin solid"> 
-                                <b> Bonus </b>
+                                <b> Pending Downlines </b>
                             </div>
                         </div>
                         <div class="row m0">
@@ -291,7 +291,7 @@
                                 <?php echo $step1; ?>
                             </div>
                             <div class="col-5 p10" style="border-bottom: #f0f0f0 thin solid"> 
-                                <?php if($step1 < 3){ echo "N0.00"; } else { echo "N".number_format((($currentPlan['amount'] * $currentPlan['stage1_roi'])/100), 2); } ?>
+                                <?php echo 3 - $step1; ?>
                             </div>
                         </div>
                         <div class="row m0">
@@ -302,7 +302,7 @@
                                 <?php echo $step2; ?>
                             </div>
                             <div class="col-5 p10" style="border-bottom: #f0f0f0 thin solid"> 
-                                <?php if($step2 < 9){ echo "N0.00"; } else { echo "N".number_format((($currentPlan['amount'] * $currentPlan['stage2_roi'])/100), 2); } ?>
+                                <?php echo 9 - $step2; ?>
                             </div>
                         </div>
                         <?php if($step1 == 3 && $step2 == 9){ ?>
