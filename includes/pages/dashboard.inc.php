@@ -305,9 +305,9 @@
                                 <?php echo 9 - $step2; ?>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-4" style="background:#333; color:#fff"> Stage Reward </div>
-                            <div class="col-8">
+                        <div class="row m0" style="border-bottom: #f0f0f0 thin solid">
+                            <div class="col-4 p10" style="background:#333; color:#fff"> Stage Reward </div>
+                            <div class="col-8 p10">
                                 <?php echo "N".number_format($currentPlan['cash_price'])." cash and ".$currentPlan['item_price']; ?>
                             </div>
                         </div>
