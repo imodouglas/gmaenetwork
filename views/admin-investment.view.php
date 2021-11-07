@@ -147,7 +147,7 @@
                                             </div>
                                             <div class="row m0">
                                                 <div class="col-12">
-                                                    <?php if($investment['status'] == "pending"){ ?>
+                                                    <?php if($invest['status'] == "pending"){ ?>
                                                         <button class="btn btn-success" style="padding:5px 8px; font-size:10px" title="Activate Investment" onclick="activateInvestment(<?php echo $invest['id']; ?>)"> <i class="fas fa-play"></i> </button>
                                                         <button class="btn btn-danger" style="padding:5px 8px; font-size:10px" title="Delete Investment" onclick="deleteInvestment(<?php echo $invest['id']; ?>)"> <i class="fas fa-times"></i> </button>
                                                     <?php } ?>
