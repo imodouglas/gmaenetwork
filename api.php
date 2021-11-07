@@ -38,6 +38,10 @@
         echo json_encode($result);
     }
 
+    if(isset($_GET['cmd']) && $_GET['cmd'] == "check-downline"){
+        echo json_encode($user->getCheckDownline(40, 2));
+    }
+
     if(isset($_POST['cmd'], $_POST['user'], $_POST['level']) && $_POST['cmd'] == "upgrade-next-level"){
         $userInfo = $user->getUser($_POST['user']);
         $levelInfo = $user->getCurrentNextPlan($_POST['user']);
@@ -64,15 +68,16 @@
                         }
                         $downlines = $user->getDownlines($userInfo['uname']);
                         if($downlines !== false){
+
                             foreach($downlines AS $downline){
                                 if($user->getCheckDownline($downline['id'], $levelInfo['next_plan_id']) !== false){
-                                    $refTeam = $user->getTeam($userInfo['id']);
+                                    $refTeam = $user->getTeam($inv['id']);
                                     if($refTeam['link1'] == NULL){
-                                        $rData = $user->doUpdateTeam($refTeam['id'], 'link1', $userInfo['id']);
+                                        $rData = $user->doUpdateTeam($refTeam['id'], 'link1', $downline['id']);
                                     } else if($refTeam['link2'] == NULL){
-                                        $rData = $user->doUpdateTeam($refTeam['id'], 'link2', $userInfo['id']);
+                                        $rData = $user->doUpdateTeam($refTeam['id'], 'link2', $downline['id']);
                                     } else if($refTeam['link3'] == NULL){
-                                        $rData = $user->doUpdateTeam($refTeam['id'], 'link3', $userInfo['id']);
+                                        $rData = $user->doUpdateTeam($refTeam['id'], 'link3', $downline['id']);
                                     }
                                 }
                             }

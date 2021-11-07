@@ -12,6 +12,11 @@ class InvestmentController extends InvestmentModel{
         return $this->currentInvestment($userId);
     }
 
+    /** Get Level Investments */
+    public function getLevelInvestment($userId, $planId){
+        return $this->levelInvestment($userId, $planId);
+    }
+
     public function doCompleteInvestment($id){
         return $this->completeInvestement($id);
     }

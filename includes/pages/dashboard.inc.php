@@ -67,7 +67,7 @@
                             <br> |
                             <?php 
                                 if($currentTeam['link1'] !== NULL){
-                                    $l1Investment = $investment->getCurrentInvestment($currentTeam['link1']);
+                                    $l1Investment = $investment->getLevelInvestment($currentTeam['link1'], $currentInvestment['plan_id']);
                                     if($l1Investment !== false){
                                         $l1Team = $user->getTeam($l1Investment['id']);
                             ?>
@@ -139,7 +139,7 @@
                             <br> |
                             <?php 
                                 if($currentTeam['link2'] !== NULL){
-                                    $l2Investment = $investment->getCurrentInvestment($currentTeam['link2']);
+                                    $l2Investment = $investment->getLevelInvestment($currentTeam['link2'], $currentInvestment['plan_id']);
                                     if($l2Investment !== false){
                                         $l2Team = $user->getTeam($l2Investment['id']);
                             ?>
@@ -211,7 +211,7 @@
                             <br> |
                             <?php 
                                 if($currentTeam['link3'] !== NULL){
-                                    $l3Investment = $investment->getCurrentInvestment($currentTeam['link3']);
+                                    $l3Investment = $investment->getLevelInvestment($currentTeam['link3'], $currentInvestment['plan_id']);
                                     if($l3Investment !== false){
                                         $l3Team = $user->getTeam($l3Investment['id']);
                             ?>

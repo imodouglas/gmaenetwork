@@ -196,11 +196,8 @@ class User extends Config {
     protected function checkDownline($id, $level){
         $query = $this->conn()->prepare("SELECT * FROM investments WHERE user_id = ? AND plan_id = ? AND status = ?");
         $query->execute([$id, $level, "active"]);
-        if($query){
-            return true;
-        } else {
-            return false;
-        }
+        $result = $this->singleResult($query);
+        return $result;
     }
 
     protected function userDownlines($uname){

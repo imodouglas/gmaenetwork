@@ -22,6 +22,14 @@ class InvestmentModel extends Config {
         return $result;
     }
 
+    /** Get User Current Investments */
+    protected function levelInvestment($userId, $planId){
+        $query = $this->conn()->prepare("SELECT * FROM investments WHERE `user_id` = ? AND plan_id = ? ORDER BY id desc");
+        $query->execute([$userId, $planId]);
+        $result = $this->singleResult($query);
+        return $result;
+    }
+
     /** Get Latest Investments */
     protected function latestInvestments($userId, $feedback){
         $query = $this->conn()->prepare("SELECT * FROM investments WHERE `user_id` = ? ORDER BY id desc LIMIT 3");
