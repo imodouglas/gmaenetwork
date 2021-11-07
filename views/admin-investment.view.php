@@ -48,11 +48,10 @@
                                 if($investment->investmentsByStatus($inv_user_id, 'active') !== false){
                                     foreach($investment->investmentsByStatus($inv_user_id, 'active') AS $invest){
                                         $planData = $plan->getPlan($invest['plan_id']);
-                                        $roi = $planData['amount'] + (($planData['amount'] * $planData['percentage'])/100);
                             ?>
                                 <div class="col-sm-4 p10 mb10">
                                     <div class="investment-card" align="center">
-                                        <h3><?php echo $planData['name'] ?></h3>
+                                        <h3>Stage <?php echo $planData['id']; ?></h3>
 
                                         <div class="row m0 investment-card-item">
                                             <div class="col-6 p5" align="left">
@@ -64,18 +63,16 @@
                                         </div>
                                         <div class="row m0 investment-card-item">
                                             <div class="col-6 p5" align="left">
-                                                <b> Expected ROI </b>
+                                                <b> Cash Reward </b>
                                             </div>
                                             <div class="col-6 p5">
-                                                N<?php echo number_format($roi)." (".$planData['percentage']."%)"; ?>
+                                                N<?php echo number_format($planData['cash_price']); ?>
                                             </div>
                                         </div>
                                         <div class="row m0 investment-card-item">
-                                            <div class="col-6 p5" align="left">
-                                                <b> Duration </b>
-                                            </div>
-                                            <div class="col-6 p5">
-                                                <?php echo number_format($planData['days'])." days"; ?>
+                                            <div class="col-12 p5" align="left">
+                                                <b> Item Reward </b> <br>
+                                                <?php echo $planData['item_price']; ?>
                                             </div>
                                         </div>
                                         <div class="row m0 investment-card-item">
@@ -88,70 +85,11 @@
                                                 ?> 
                                             </div>
                                         </div>
-                                        <div class="row m0 investment-card-item">
-                                            <div class="col-6 p5" align="left">
-                                                <b> Activation Date </b>
-                                            </div>
-                                            <div class="col-6 p5">
-                                                <?php 
-                                                    if($invest['status'] == "pending"){ echo "Not Set"; } else { echo date("d M, Y", $invest['created_at']); }
-                                                ?> 
+                                        <div class="row m0">
+                                            <div class="col-12">
+                                                <a href="../user/<?php echo $inv_user['id']; ?>" class="btn btn-primary form-control white-color"> View Tree </a>
                                             </div>
                                         </div>
-                                        <div class="row m0 investment-card-item">
-                                            <div class="col-6 p5" align="left">
-                                                <b> Completion Date </b>
-                                            </div>
-                                            <div class="col-6 p5">
-                                                <?php 
-                                                    if($invest['status'] == "pending"){ echo "Not Set"; } else { echo date("d M, Y", $invest['expires_at']); }
-                                                ?> 
-                                            </div>
-                                        </div>
-                                        <?php if($invest['status'] == "pending"){ ?>
-                                            <div class="p5">
-                                                <button class="btn btn-success form-control" onclick="investment.activate(<?php echo $invest['id']; ?>)">Activate Plan</button>
-                                            </div>
-                                            <div class="p5">
-                                                <button class="btn btn-danger form-control" onclick="investment.delete(<?php echo $invest['id'] ?>)">Cancel Plan</button>
-                                            </div>
-                                        <?php } else if($invest['status'] == "active"){ ?>
-                                            <div class="row m0 mb10 header-title-banner" style='border-bottom:#ccc thin solid'>
-                                                <div class="col-6 p5" align="left">
-                                                    <b style="color:green"> Current Income </b>
-                                                </div>
-                                                <div class="col-6 p5" id="counter-<?php echo $invest['id'] ?>" style="color:red"></div>
-                                                <script>
-                                                    setInterval(() => {
-                                                        let start = <?php echo $invest['activated_at']; ?>;
-                                                        let end = <?php echo $invest['expires_at']; ?>;
-                                                        let now = Date.now() / 1000;
-                                                        let roi = <?php echo $roi; ?>;
-                                                        let ppsec = roi / (end - start); 
-                                                        if(now <= end){
-                                                            let current = (now - start) * ppsec;
-                                                            let newAmount = current + ppsec;
-                                                            $("#counter-"+<?php echo $invest['id'] ?>).html("N"+number_format(newAmount.toFixed(2))); 
-                                                        } else {
-                                                            $("#counter-"+<?php echo $invest['id'] ?>).html("N"+number_format(roi));
-                                                        }
-                                                    }, 1000);
-                                                </script>
-                                            </div>
-                                            <?php if(time() > $invest['expires_at']){ ?>
-                                                <div class="row m0 mb10">
-                                                    <div class="col-12" align="center">
-                                                        Investment Complete! Click the Complete button to send earnings to your wallet.
-                                                        <form action="api.php" method="post">
-                                                            <input type="hidden" name="cmd" value="complete">
-                                                            <input type="hidden" name="investment" value="<?php echo $invest['id']; ?>">
-                                                            <input type="submit" value="complete">
-                                                        </form>
-                                                        <button class="btn btn-dark form-control" onclick="investment.complete(<?php echo $invest['id']; ?>)">Complete!</button>
-                                                    </div>
-                                                </div>
-                                            <?php } ?>
-                                        <?php } ?>
                                     </div>
                                 </div>
                             <?php } } else { echo "No active investment!"; } ?>
@@ -170,11 +108,10 @@
                                     if($investment->investmentsByStatus($inv_user_id, 'pending') !== false){
                                         foreach($investment->investmentsByStatus($inv_user_id, 'pending') AS $invest){
                                             $planData = $plan->getPlan($invest['plan_id']);
-                                            $roi = $planData['amount'] + (($planData['amount'] * $planData['percentage'])/100);
                                 ?>
                                     <div class="col-sm-4 p10 mb10">
                                         <div class="investment-card" align="center">
-                                            <h3><?php echo $planData['name'] ?></h3>
+                                            <h3>Stage <?php echo $planData['id']; ?></h3>
 
                                             <div class="row m0 investment-card-item">
                                                 <div class="col-6 p5" align="left">
@@ -186,18 +123,16 @@
                                             </div>
                                             <div class="row m0 investment-card-item">
                                                 <div class="col-6 p5" align="left">
-                                                    <b> Expected ROI </b>
+                                                    <b> Cash Reward </b>
                                                 </div>
                                                 <div class="col-6 p5">
-                                                    N<?php echo number_format($roi)." (".$planData['percentage']."%)"; ?>
+                                                    N<?php echo number_format($planData['cash_price']); ?>
                                                 </div>
                                             </div>
                                             <div class="row m0 investment-card-item">
-                                                <div class="col-6 p5" align="left">
-                                                    <b> Duration </b>
-                                                </div>
-                                                <div class="col-6 p5">
-                                                    <?php echo number_format($planData['days'])." days"; ?>
+                                                <div class="col-12 p5" align="left">
+                                                    <b> Item Reward </b> <br>
+                                                    <?php echo $planData['item_price']; ?>
                                                 </div>
                                             </div>
                                             <div class="row m0 investment-card-item">
@@ -210,31 +145,28 @@
                                                     ?> 
                                                 </div>
                                             </div>
-                                            <div class="row m0 investment-card-item">
-                                                <div class="col-6 p5" align="left">
-                                                    <b> Activation Date </b>
+                                            <div class="row m0">
+                                                <div class="col-12">
+                                                    <?php if($investment['status'] == "pending"){ ?>
+                                                        <button class="btn btn-success" style="padding:5px 8px; font-size:10px" title="Activate Investment" onclick="activateInvestment(<?php echo $invest['id']; ?>)"> <i class="fas fa-play"></i> </button>
+                                                        <button class="btn btn-danger" style="padding:5px 8px; font-size:10px" title="Delete Investment" onclick="deleteInvestment(<?php echo $invest['id']; ?>)"> <i class="fas fa-times"></i> </button>
+                                                    <?php } ?>
                                                 </div>
-                                                <div class="col-6 p5">
-                                                    <?php 
-                                                        if($invest['status'] == "pending"){ echo "Not Set"; } else { echo date("d M, Y", $invest['created_at']); }
-                                                    ?> 
-                                                </div>
-                                            </div>
-                                            <div class="row m0 investment-card-item">
-                                                <div class="col-6 p5" align="left">
-                                                    <b> Completion Date </b>
-                                                </div>
-                                                <div class="col-6 p5">
-                                                    <?php 
-                                                        if($invest['status'] == "pending"){ echo "Not Set"; } else { echo date("d M, Y", $invest['expires_at']); }
-                                                    ?> 
-                                                </div>
-                                            </div>
-                                            <div class="p5">
-                                                <button class="btn btn-success form-control" onclick="activateInvestment(<?php echo $invest['id']; ?>)">Activate Plan</button>
-                                            </div>
-                                            <div class="p5">
-                                                <button class="btn btn-danger form-control" onclick="deleteInvestment(<?php echo $invest['id'] ?>)">Cancel Plan</button>
+                                                <script>
+                                                    const activateInvestment = (id) => {
+                                                        let formData = "investment="+id+"&cmd=confirm";
+                                                        $.post("../../api.php", formData, function(result){
+                                                            location.reload();
+                                                        });
+                                                    }
+                                                    
+                                                    const deleteInvestment = (id) => {
+                                                        let formData = "investment="+id+"&cmd=delete";
+                                                        $.post("../../api.php", formData, (result)=>{
+                                                            location.reload();
+                                                        });
+                                                    }
+                                                </script>
                                             </div>
                                         </div>
                                     </div>
@@ -260,11 +192,10 @@
                                     if($investment->investmentsByStatus($inv_user_id, 'complete') !== false){
                                         foreach($investment->investmentsByStatus($inv_user_id, 'complete') AS $invest){
                                             $planData = $plan->getPlan($invest['plan_id']);
-                                            $roi = $planData['amount'] + (($planData['amount'] * $planData['percentage'])/100);
                                 ?>
                                     <div class="col-sm-4 p10 mb10">
                                         <div class="investment-card" align="center">
-                                            <h3><?php echo $planData['name'] ?></h3>
+                                            <h3>Stage <?php echo $planData['id']; ?></h3>
 
                                             <div class="row m0 investment-card-item">
                                                 <div class="col-6 p5" align="left">
@@ -276,18 +207,16 @@
                                             </div>
                                             <div class="row m0 investment-card-item">
                                                 <div class="col-6 p5" align="left">
-                                                    <b> Expected ROI </b>
+                                                    <b> Cash Reward </b>
                                                 </div>
                                                 <div class="col-6 p5">
-                                                    N<?php echo number_format($roi)." (".$planData['percentage']."%)"; ?>
+                                                    N<?php echo number_format($planData['cash_price']); ?>
                                                 </div>
                                             </div>
                                             <div class="row m0 investment-card-item">
-                                                <div class="col-6 p5" align="left">
-                                                    <b> Duration </b>
-                                                </div>
-                                                <div class="col-6 p5">
-                                                    <?php echo number_format($planData['days'])." days"; ?>
+                                                <div class="col-12 p5" align="left">
+                                                    <b> Item Reward </b> <br>
+                                                    <?php echo $planData['item_price']; ?>
                                                 </div>
                                             </div>
                                             <div class="row m0 investment-card-item">
@@ -302,21 +231,11 @@
                                             </div>
                                             <div class="row m0 investment-card-item">
                                                 <div class="col-6 p5" align="left">
-                                                    <b> Activation Date </b>
-                                                </div>
-                                                <div class="col-6 p5">
-                                                    <?php 
-                                                        if($invest['status'] == "pending"){ echo "Not Set"; } else { echo date("d M, Y", $invest['created_at']); }
-                                                    ?> 
-                                                </div>
-                                            </div>
-                                            <div class="row m0 investment-card-item">
-                                                <div class="col-6 p5" align="left">
                                                     <b> Completion Date </b>
                                                 </div>
                                                 <div class="col-6 p5">
                                                     <?php 
-                                                        if($invest['status'] == "pending"){ echo "Not Set"; } else { echo date("d M, Y", $invest['expires_at']); }
+                                                        echo date("d M, Y", $invest['completed_at']);
                                                     ?> 
                                                 </div>
                                             </div>

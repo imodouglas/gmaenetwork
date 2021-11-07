@@ -115,7 +115,7 @@
                             </div>
                             
                             <div class="mb10" align="center" style="padding-top:40px; padding-bottom:40px">
-                                <div style="padding:15px"> <h3 align="center"> LEVEL <?php echo $inv_user['level']; ?> </h3> </div>
+                                <div style="padding:15px"> <h3 align="center"> STAGE <?php echo $inv_user['level']; ?> </h3> </div>
                                 <div>
                                     <i class="fa fa-street-view user-icon-active"></i>
                                     <br> You (<?php echo $inv_user['uname'] ?>)

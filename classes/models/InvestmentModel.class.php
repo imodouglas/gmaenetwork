@@ -83,8 +83,8 @@ class InvestmentModel extends Config {
 
     /** Complete Status */
     protected function completeInvestement($id){
-        $query = $this->conn()->prepare("UPDATE investments SET is_current = ?, status = ? WHERE id = ?");
-        $query->execute(["no", "complete", $id]);
+        $query = $this->conn()->prepare("UPDATE investments SET is_current = ?, status = ?, completed_at = ? WHERE id = ?");
+        $query->execute(["no", "complete", time(), $id]);
         if($query){
             return true;
         } else { 
