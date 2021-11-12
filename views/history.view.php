@@ -324,12 +324,6 @@
                                     <?php echo "N".number_format($currentPlan['cash_price'])." cash and ".$currentPlan['item_price']; ?>
                                 </div>
                             </div>
-                            <?php if($step1 == 3 && $step2 == 9){ ?>
-                                <div class="p10" align="center" style="margin-top:30px">
-                                    <button class="btn btn-primary" onclick="upgradeLevel('<?php echo $userData['id']; ?>', '<?php echo $userData['level']; ?>')"> <i class="fas fa-arrow-up"></i>&nbsp; Upgrade to Level <?php echo $userData['level'] + 1; ?> </button>
-                                    <button class="btn btn-danger" onclick="cashoutProfit()"> End & Take Profit &nbsp;<i class="fas fa-sign-out-alt"></i> </button>
-                                </div>
-                            <?php } ?>
                         </div>
                     </div>
                     
