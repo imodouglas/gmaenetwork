@@ -2,6 +2,7 @@
     $step1 = 0;
     $step2 = 0;
 ?>
+
 <div class="row m0" style="padding-bottom:70px">
     <div class="col-sm-12">
         <?php 
@@ -43,6 +44,7 @@
                 <div class="p10 mb10 header-title-banner">
                     <b> Referral Link: </b> <a href="<?php echo $refLink; ?>" style="color:#369"> <?php echo $refLink; ?> </a>
                 </div>
+
                 <div class="mb10" align="center" style="padding-top:40px; padding-bottom:40px">
                     <div>
                         <i class="fa fa-street-view user-icon-active"></i>

@@ -11,7 +11,7 @@
     <?php if(isset($_SESSION['user_session'])){ ?>
       <a href="<?php echo $rootURL; ?>home" class="menu-item"> <i class="fas fa-tachometer-alt"></i> Dashboard </a>
       <!-- <a href="<?php echo $rootURL; ?>investments" class="menu-item"> <i class="fas fa-chart-line"></i> Levels </a> -->
-      <!-- <a href="<?php echo $rootURL; ?>history" class="menu-item"> <i class="fas fa-book-open"></i> History </a> -->
+      <a href="<?php echo $rootURL; ?>history" class="menu-item"> <i class="fas fa-book-open"></i> History </a>
       <a href="<?php echo $rootURL; ?>wallet" class="menu-item"> <i class="fas fa-wallet"></i> Wallet </a>
       <!-- <a href="<?php echo $rootURL; ?>referrals" class="menu-item"> <i class="fas fa-cog"></i> Referrals </a> -->
       <a href="<?php echo $rootURL; ?>logout" class="menu-item"> <i class="fas fa-sign-out-alt"></i> Logout </a>

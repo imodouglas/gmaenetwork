@@ -59,8 +59,8 @@
         });
 
         /** User Investments */
-        route('/investments', function(){ 
-            $url = userAuth('views/investments.view.php');
+        route('/history', function(){ 
+            $url = userAuth('views/history.view.php');
             include $url;
         });
 
