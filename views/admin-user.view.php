@@ -1,7 +1,7 @@
 <?php
     include 'includes/env.inc.php';
 
-    $userId = $_SESSION['admin_session'];
+    $userId = $userSession;
     $user = new UserController();
     $investment = new InvestmentController();
     $plan = new PlanController();
@@ -383,12 +383,14 @@
                                             <?php echo "N".number_format($currentPlan['cash_price'])." cash and ".$currentPlan['item_price']; ?>
                                         </div>
                                     </div>
-                                    <?php if($step1 == 3 && $step2 == 9){ ?>
+                                    <?php 
+                                        if(isset($_SESSION['admin_session'])){
+                                        if($step1 == 3 && $step2 == 9){ ?>
                                         <div class="p10" align="center" style="margin-top:30px">
                                             <button class="btn btn-primary" onclick="upgradeLevel('<?php echo $inv_user['id']; ?>', '<?php echo $inv_user['level']; ?>')"> <i class="fas fa-arrow-up"></i>&nbsp; Upgrade to Level <?php echo $inv_user['level'] + 1; ?> </button>
                                             <button class="btn btn-danger" onclick="cashoutProfit()"> End & Take Profit &nbsp;<i class="fas fa-sign-out-alt"></i> </button>
                                         </div>
-                                    <?php } ?>
+                                    <?php } } ?>
                                 </div>
                             </div>
                         <?php } ?>

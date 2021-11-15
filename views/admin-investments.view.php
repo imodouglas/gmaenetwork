@@ -1,7 +1,7 @@
 <?php 
     include 'includes/env.inc.php';
 
-    $userId = $_SESSION['admin_session'];
+    $userId = $userSession;
     $user = new UserController();
     $investment = new InvestmentController();
     $plan = new PlanController();
@@ -62,12 +62,15 @@
                                         </td>
                                         <td style="padding:10px; border-bottom:#ccc thin solid">
                                             <button class="btn btn-primary" style="padding:5px 8px; font-size:10px" title="View Investment Investment" onclick="showInvestment(<?php echo $userInfo['id']; ?>)"> <i class="fas fa-eye"></i> </button>
-                                            <?php if($investment['status'] == "pending"){ ?>
+                                            <?php 
+                                                if(isset($_SESSION['admin_session'])){ 
+                                                if($investment['status'] == "pending"){ 
+                                            ?>
                                                 <button class="btn btn-success" style="padding:5px 8px; font-size:10px" title="Activate Investment" onclick="activateInvestment(<?php echo $investment['id']; ?>)"> <i class="fas fa-play"></i> </button>
                                                 <button class="btn btn-danger" style="padding:5px 8px; font-size:10px" title="Delete Investment" onclick="deleteInvestment(<?php echo $investment['id']; ?>)"> <i class="fas fa-times"></i> </button>
                                             <?php } else if($investment['status'] == "active"){ ?>
                                                 <button class="btn btn-dark" style="padding:5px 8px; font-size:10px" title="Stop Investment" onclick="deactivateInvestment(<?php echo $investment['id']; ?>)"> <i class="fas fa-stop"></i> </button>
-                                            <?php } ?>
+                                            <?php } }?>
                                         </td>
                                     </tr>
                                 <?php } ?>

@@ -1,7 +1,7 @@
 <?php 
     include 'includes/env.inc.php';
 
-    $userId = $_SESSION['user_session'];
+    $userId = $userSession;
     $user = new UserController();
     $investment = new InvestmentController();
     $plan = new PlanController();

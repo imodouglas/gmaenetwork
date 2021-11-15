@@ -14,7 +14,16 @@
 
         /** User Authentication */
         function userAuth($url){
-            if(isset($_SESSION['user_session']) || isset($_SESSION['admin_session'])){
+            if(isset($_SESSION['user_session']) || isset($_SESSION['editor_session']) || isset($_SESSION['admin_session'])){
+                return $url;
+            } else {
+                return 'views/index.view.php';
+            }
+        }
+
+        /** Editot Authentication */
+        function editorAuth($url){
+            if(isset($_SESSION['editor_session']) || isset($_SESSION['admin_session'])){
                 return $url;
             } else {
                 return 'views/index.view.php';
@@ -94,25 +103,25 @@
 
         /** Homepage After Login */
         route('/admin', function(){ 
-            $url = adminAuth('views/admin-home.view.php');
+            $url = editorAuth('views/admin-home.view.php');
             include $url;
         });
 
         /** Manage Investments Page */
         route('/admin/investments', function(){ 
-            $url = adminAuth('views/admin-investments.view.php');
+            $url = editorAuth('views/admin-investments.view.php');
             include $url;
         });
 
         route('/admin/investments/(.+)/?', function($id){ 
             $id = $id;
-            $url = adminAuth('views/admin-investment.view.php');
+            $url = editorAuth('views/admin-investment.view.php');
             include $url;
         });
 
         /** Manage Users Page */
         route('/admin/users', function(){ 
-            $url = adminAuth('views/admin-users.view.php');
+            $url = editorAuth('views/admin-users.view.php');
             include $url;
         });
 
@@ -120,7 +129,7 @@
         /** Manage A User Page */
         route('/admin/user/(.+)/?', function($id){ 
             $id = $id;
-            $url = adminAuth('views/admin-user.view.php');
+            $url = editorAuth('views/admin-user.view.php');
             include $url;
         });
 

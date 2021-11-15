@@ -9,10 +9,18 @@
     if(isset($_POST['login'], $_POST['email'], $_POST['password'])){
         $result = $user->doLogin($_POST['email'], $_POST['password']);
         if($result !== false){
-            if($result['role'] == 'admin'){
+            if($result['role'] == 'admin')
+            {
                 $_SESSION['admin_session'] = $result['id'];
                 echo "<script> window.location = '".$rootURL."admin'; </script>";
-            } else if($result['role'] == 'member'){
+            } 
+            else if($result['role'] == 'editor')
+            {
+                $_SESSION['editor_session'] = $result['id'];
+                echo "<script> window.location = '".$rootURL."home'; </script>";
+            } 
+            else if($result['role'] == 'member')
+            {
                 $_SESSION['user_session'] = $result['id'];
                 echo "<script> window.location = '".$rootURL."home'; </script>";
             }
