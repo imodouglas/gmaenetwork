@@ -16,6 +16,8 @@
     if(isset($_POST['wallet-cashout'])){
         if($_POST['amount'] <= $walletBalance){
             $result = $payout->doAddPayout($userId,"bank",$_POST['amount'],"pending");
+            $msg = "You have a new payout request from ".$userData['fname']." for the sum of N".number_format($userData['amount']);
+            $mailer->sendMail($userData['email'], "info@gmaenetwork.com", "New Cashout Request!", $msg, "GMEA Network");
         } else {
             $result = 0;
         }
